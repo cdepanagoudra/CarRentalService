@@ -1,0 +1,76 @@
+﻿@model IEnumerable<CAR_RENTAL_SERVICE.Models.Car>
+
+@{
+    ViewData["Title"] = "List Car";
+}
+
+<div class="col-6">
+    <h2 class="text-primary">Products</h2>
+</div>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        @*<div class="col-6">
+                <h4>Car List</h4>
+            </div>*@
+        <div class="col-3">
+            <a class="nav-link text-dark btn-primary font-weight-bold" style="position: relative; margin: 10px; background-color: #ff8d00;float: right" asp-area="" asp-controller="Car" asp- asp-action="Create">Add Car</a>
+        </div>
+        @*<div>
+                <a class="nav-link text-dark btn-primary font-weight-bold" style="position: relative; margin: 10px; background-color: #ff8d00;float: right" asp-area="" asp-controller="Admin" asp- asp-action="Addproduct">Add Category</a>
+            </div>*@
+    </div>
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        RegistrationNumber
+                    </th>
+                    <th>
+                        ModelName
+                    </th>
+                    <th>
+                        Make
+                    </th>
+                    <th>
+                        ModelYear
+                    </th>
+                    <th>
+                        Mileage
+                    </th>
+                    @*<th>
+                            Description
+                        </th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    <td width="10%">@obj.RegistrationNumber</td>
+                    <td width="30%">@obj.ModelName</td>
+                    <td width="20%">@obj.Make</td>
+                    <td width="20%">@obj.ModelYear</td>
+                    <td width="10%">@obj.Mileage</td>
+
+                    <td class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Car" asp-route-Id="@obj.RegistrationNumber" asp-action="Update" class="btn btn-primary mx-1">
+                                <i class="fas fa-edit"></i> Update
+                            </a>
+                            <a asp-controller="Car" asp-route-Id="@obj.RegistrationNumber" asp-action="Delete" class="btn btn-danger mx-3">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+
